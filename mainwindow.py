@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon, QMouseEvent, QPixmap
 from PySide6.QtCore import QCoreApplication, QPointF, Qt
 from PySide6.QtWidgets import QLabel, QMainWindow, QPushButton, QWidget, QGraphicsOpacityEffect, QGraphicsBlurEffect
 
-import topbar, sidebar, todo
+import topbar, sidebar
 from account import Account
 
 
@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         # 원정대 정보 로드
         if not os.path.exists("preference.json"):
             with open("preference.json", "w") as f:
-                json.dump({"account_count": 0, "account_name": []}, f)
+                json.dump({"account": []}, f)
 
         with open("preference.json", "rt", encoding="UTF-8") as file:
             config = json.load(file)
@@ -44,7 +44,7 @@ class MainWindow(QMainWindow):
         self.background.setGraphicsEffect(alpha)
 
         # 할일창
-        self.to_do = todo.TodoWindow(self)
+        # self.to_do = todo.TodoWindow(self)
         # 상단바
         top_bar = topbar.TopBar(self)
         # 좌측바
