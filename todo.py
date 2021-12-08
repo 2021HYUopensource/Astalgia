@@ -58,8 +58,25 @@ class TodoWindow(QWidget):
             self.acc[idx][i][1].move(icon_location - text_location + 3, 55)
             self.acc[idx][i][1].setStyleSheet("background: none; color: white; font-family: NanumBarunGothic;")
 
+            # 할일
+            self.acc[idx][i].append(QPushButton("+", self))
+            self.acc[idx][i][2].setGeometry(X_OFFSET + i * 70, 100, 41, 41)
+            self.acc[idx][i][2].setStyleSheet("""
+                                                                    QPushButton {
+                                                                        background: rgba(0,0,0,0);
+                                                                        color: rgba(255,255,255,0.5);
+                                                                        font-size: 24pt;
+                                                                        text-align: center;
+                                                                        padding-bottom: 3px;
+                                                                    }
+                                                                    QPushButton:hover {
+                                                                        color: #ffffff;
+                                                                    }
+                                                                    """)
+
             self.acc[idx][i][0].hide()
             self.acc[idx][i][1].hide()
+            self.acc[idx][i][2].hide()
 
     def set_account(self, idx):
         for i in range(len(self.acc)):
@@ -67,6 +84,8 @@ class TodoWindow(QWidget):
                 if i == idx:
                     self.acc[i][j][0].show()
                     self.acc[i][j][1].show()
+                    self.acc[i][j][2].show()
                 else:
                     self.acc[i][j][0].hide()
                     self.acc[i][j][1].hide()
+                    self.acc[i][j][2].hide()

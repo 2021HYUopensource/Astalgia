@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon, QMouseEvent, QPixmap
 from PySide6.QtCore import QPointF, Qt
 from PySide6.QtWidgets import QLabel, QMainWindow, QGraphicsOpacityEffect
 
-import topbar, sidebar
+import topbar, sidebar, todo
 from account import Account
 
 
@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         self.background.setGraphicsEffect(alpha)
 
         # 할일창
-        # self.to_do = todo.TodoWindow(self)
+        self.to_do = todo.TodoWindow(self)
         # 상단바
         top_bar = topbar.TopBar(self)
         # 좌측바
