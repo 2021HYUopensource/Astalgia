@@ -3,7 +3,7 @@ import json
 from PySide6 import QtCore
 from PySide6.QtGui import QIcon, QMouseEvent, QPixmap
 from PySide6.QtCore import QPointF, Qt
-from PySide6.QtWidgets import QLabel, QMainWindow, QGraphicsOpacityEffect
+from PySide6.QtWidgets import QLabel, QMainWindow, QGraphicsOpacityEffect, QWidget
 
 import topbar, sidebar, todo
 from account import Account
@@ -42,15 +42,29 @@ class MainWindow(QMainWindow):
         alpha.setOpacity(0.07)
         self.background.setGraphicsEffect(alpha)
 
+        # 팝업시 화면 어둡게
+        self.back = QWidget(self)
+        self.back.resize(1280, 720)
+        self.back.setStyleSheet("background: rgba(0,0,0,0.7);")
+        self.back.hide()
+
         # 할일창
         self.to_do = todo.TodoWindow(self)
         # 상단바
         top_bar = topbar.TopBar(self)
         # 좌측바
-        side_bar = sidebar.SideBar(self)
+        self.side_bar = sidebar.SideBar(self)
         content = []
 
         self.show()
+
+    def hide_screen(self):
+        self.back.show()
+        self.back.raise_()
+
+    def show_screen(self):
+        self.back.hide()
+
 
     def mousePressEvent(self, event: QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton and event.position().y() <= 65:
