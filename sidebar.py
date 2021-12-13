@@ -59,9 +59,7 @@ class AddAccount(QWidget):
         self.sidebar.mainwindow.show_screen()
 
 
-
 class SideBar(QWidget):
-
     def __init__(self, par):
         self.mainwindow = par
         super().__init__(self.mainwindow)
